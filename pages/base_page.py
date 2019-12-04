@@ -5,7 +5,7 @@ class BasePage():
         self.browser = browser
         self.url = url
         #команда для неявного ожидания
-        self.browser.implicity_wait(timeout)
+        self.browser.implicitly_wait(timeout)
 
     # Open required page/link
     def open(self):

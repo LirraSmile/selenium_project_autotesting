@@ -5,7 +5,6 @@ import pytest
 
 link = "http://selenium1py.pythonanywhere.com/"
 
-@pytest.mark.skip
 def test_guest_can_go_to_login_page(browser):
     #инициализация Page Object, передача в конструктор 
     # экземпляра драйвера и url-адреса

@@ -4,6 +4,12 @@ from .locators import ProductPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 
 class ProductPage(BasePage):
+
+    #метод добавления в корзину
+    def add_to_basket(self):
+        basket_button = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
+        basket_button.click()
+
     #метод-проверка что существует кнопка добавления в корзину
     def should_be_basket_button(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_BUTTON), "Basket button is not presented"
@@ -28,10 +34,7 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         assert exprcted_price.find(product_price.text), "Product price is not equal"
 
-    #метод добавления в корзину
-    def add_to_basket(self):
-        basket_button = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
-        basket_button.click()
+
     
     #метод для нахождения на странице названия продукта
     #def find_product_handle(self):

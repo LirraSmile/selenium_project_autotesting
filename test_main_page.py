@@ -5,6 +5,24 @@ import pytest
 
 link = "http://selenium1py.pythonanywhere.com/"
 
+@pytest.mark.login_guest
+class TestLoginFromMainPage():
+    def test_guest_can_go_to_login_page(self, browser):
+    #инициализация Page Object, передача в конструктор 
+    # экземпляра драйвера и url-адреса
+        page = MainPage(browser, link)
+    #открыть страницу
+        page.open()
+    #выполнить метод страницы - переход на страницу резистрация/логин
+        page.should_be_login_link()
+        page.go_to_login_page()
+        login_page = LoginPage(browser, browser.current_url)
+        login_page.should_be_login_page()
+    def test_guest_can_see_login_link(self, browser):
+        page = MainPage(browser, link)
+        page.open()
+        assert page.find_element_by_id("login_link"), "Login link is not displayed"
+
 @pytest.mark.skip
 def test_guest_can_go_to_login_page(browser):
     #инициализация Page Object, передача в конструктор 
@@ -24,4 +42,6 @@ def test_guest_cant_see_product_in_basket_from_main_page(browser):
     page.go_to_basket_page()
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_basket_page()
+
+
     
